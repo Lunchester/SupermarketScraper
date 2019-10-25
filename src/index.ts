@@ -1,8 +1,20 @@
-const cheerio = require('cheerio')
+const request = require("request");
+const cheerio = require("cheerio");
 
-const $ = cheerio.load('<h2 class="title">Hello world</h2>')
+const plussearch = "https://www.plus.nl/zoekresultaten?SearchTerm=Boterham";
 
-$('h2.title').text('Hello there!')
-$('h2').addClass('welcome')
-
-console.log($.html());
+function getFull(callback: any) {
+    request.get(plussearch, function (
+        error: any,
+        response: any,
+        data: any
+    ) {
+        const $ = cheerio.load(data);
+        callback(error, {
+            story: $("")
+                .text()
+                .trim()
+        });
+        console.log($.html());
+    });
+}
