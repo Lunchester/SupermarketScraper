@@ -7,7 +7,7 @@
     "start": "npm run build:live",
     "build": "tsc -p .",
     "publish": "npm run build | node lib/index.js",
-    "build:live": "nodemon --watch src/**/*.ts --exec ./node_modules/.bin/ts-node src/index.ts"
+    "build:live": "nodemon --watch src/*.ts --watch src/**/*ts --exec ./node_modules/.bin/ts-node src/index.ts"
   },
   "author": "Tobin Stultiens",
   "license": "ISC",
@@ -15,6 +15,7 @@
     "cheerio": "^1.0.0-rc.3",
     "nodemon": "^1.19.4",
     "request": "^2.88.0",
+    "request-promise": "^4.2.4",
     "ts-node": "^8.4.1",
     "typescript": "^3.6.4"
   },
