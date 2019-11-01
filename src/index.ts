@@ -1,14 +1,15 @@
 const puppeteer = require('puppeteer');
-const url = 'https://www.plus.nl/zoekresultaten?SearchTerm=brood';
+const url = 'https://www.plus.nl/zoekresultaten?SearchTerm=';
 const $ = require('cheerio');
 
-puppeteer
+function RetrieveSearchInformation(SearchTerm : String){
+    puppeteer
     .launch()
     .then(function (browser: { newPage: () => void; }) {
         return browser.newPage();
     })
     .then(function (page: { goto: (arg0: string) => { then: (arg0: () => any) => void; }; content: () => void; }) {
-        return page.goto(url).then(function () {
+        return page.goto(url + SearchTerm).then(function () {
             return page.content();
         });
     })
@@ -20,3 +21,6 @@ puppeteer
     .catch(function (err: any) {
         //handle error
     });
+}
+
+RetrieveSearchInformation("brood");
