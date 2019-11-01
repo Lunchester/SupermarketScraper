@@ -1,19 +1,22 @@
-const rp = require('request-promise');
-const cheerio = require("cheerio");
+const puppeteer = require('puppeteer');
+const url = 'https://www.plus.nl/zoekresultaten?SearchTerm=brood';
+const $ = require('cheerio');
 
-const plussearch = "https://www.plus.nl/zoekresultaten?SearchTerm=";
-
-function getFull(search: string) {
-    var searchres = plussearch + search;
-    rp({uri :searchres, headers:{'User-Agent': 'Mozilla/5.0'}})
-    .then(function (htmlString: any) {
-        // Process html...
-        console.log(htmlString);
+puppeteer
+    .launch()
+    .then(function (browser: { newPage: () => void; }) {
+        return browser.newPage();
+    })
+    .then(function (page: { goto: (arg0: string) => { then: (arg0: () => any) => void; }; content: () => void; }) {
+        return page.goto(url).then(function () {
+            return page.content();
+        });
+    })
+    .then(function (html: any) {
+        $('a.product-tile', html).each(function (this :any) {
+            console.log($(this).text());
+        });
     })
     .catch(function (err: any) {
-        // Crawling failed...
-        console.log(err);
+        //handle error
     });
-};
-
-getFull("Boterham");
