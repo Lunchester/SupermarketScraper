@@ -14,7 +14,8 @@ function RetrieveSearchInformation(SearchTerm : String){
         });
     })
     .then(function (html: any) {
-        $('a.product-tile', html).each(function (this :any) {
+        $('a.product-tile > div.product-tile__info > p.product-tile__description', html).each(function (this :any) {
+            //Displays the product info
             console.log($(this).text());
         });
     })
