@@ -36,5 +36,4 @@ function RetrieveSearchInformation(SearchTerm: String): IProductModel[] {
         });
     return productList;
 }
-console.log('test');
 RetrieveSearchInformation("brood");
