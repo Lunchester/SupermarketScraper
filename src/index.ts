@@ -5,35 +5,42 @@ const imageUrlFormatEnd = '.png';
 const $ = require('cheerio');
 import { IProductModel } from "./models/product-model";
 
-var productList: IProductModel[] = [];
+let productList: IProductModel[] = []
 
-function RetrieveSearchInformation(SearchTerm: String): IProductModel[] {
-    puppeteer
-        .launch()
-        .then(function (browser: { newPage: () => void; }) {
-            return browser.newPage();
-        })
-        .then(function (page: { goto: (arg0: string) => { then: (arg0: () => any) => void; }; content: () => void; }) {
-            return page.goto(url + SearchTerm).then(function () {
-                return page.content();
-            });
-        })
-        .then(function (html: any) {
-            $('a.product-tile > div.product-tile__info > p.product-tile__description', html).each(function (this: any) {
-                //Displays the product info
-                // = $(this).text();
-                console.log($(this).text());
-            });
-            $('div.prod-tile', html).each(function (this: any) {
-                //Displays the product info
-                console.log(imageUrlFormatBegin + $(this).attr('data-id') + imageUrlFormatEnd);
-            });
-            return productList;
-        })
-        .catch(function (err: any) {
-            //handle error
-            return null;
-        });
+async function RetrieveSearchInformation(SearchTerm: String): Promise<IProductModel[]> {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(url + SearchTerm);
+    await page.content();
+    const bodyHandle = await page.$('body');
+    const html = await page.evaluate((body: { innerHTML: any; }) => body.innerHTML, bodyHandle);
+    await ReadData(html);
     return productList;
 }
-RetrieveSearchInformation("brood");
+
+function ReadData(html: any) {
+    var descriptions: string[] = [];
+    var images: string[] = [];
+    $('a.product-tile > div.product-tile__info > p.product-tile__description', html).each(function (i: number, elem: string) {
+        //Displays the product info
+        descriptions[i] = $(elem).text();
+    });
+    $('div.prod-tile', html).each(function (i: number, elem: string) {
+        //Displays the product data
+        images[i] = imageUrlFormatBegin + $(elem).attr('data-id') + imageUrlFormatEnd;
+    });
+    for (let index = 0; index < descriptions.length; index++) {
+        //console.log(descriptions[index])
+        //console.log(images[index])
+        let product: IProductModel = {
+            description: descriptions[index],
+            imgLink: images[index]
+        }
+        productList[index] = product;
+    }
+    return productList;
+};
+let result = RetrieveSearchInformation("brood");
+result.then(function (result) {
+    console.log(result);
+})
