@@ -30,8 +30,6 @@ function ReadData(html: any) {
         images[i] = imageUrlFormatBegin + $(elem).attr('data-id') + imageUrlFormatEnd;
     });
     for (let index = 0; index < descriptions.length; index++) {
-        //console.log(descriptions[index])
-        //console.log(images[index])
         let product: IProductModel = {
             description: descriptions[index],
             imgLink: images[index]
