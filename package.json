@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run build:live",
     "build": "tsc -p .",
-    "publish": "npm run build | node lib/index.js",
+    "publish": "tsc",
     "build:live": "nodemon --watch src --exec ./node_modules/.bin/ts-node src/index.ts"
   },
   "author": "Tobin Stultiens",
