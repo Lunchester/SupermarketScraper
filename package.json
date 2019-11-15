@@ -1,12 +1,12 @@
 {
   "name": "supermarketscraper",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "It's a supermarket web scraper",
   "main": "index.js",
   "scripts": {
     "start": "npm run build:live",
     "build": "tsc -p .",
-    "publish": "npm run build | node lib/index.js",
+    "publish": "tsc",
     "build:live": "nodemon --watch src --exec ./node_modules/.bin/ts-node src/index.ts"
   },
   "author": "Tobin Stultiens",
