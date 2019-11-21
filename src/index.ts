@@ -7,7 +7,7 @@ import { IProductModel } from "./models/product-model";
 
 let productList: IProductModel[] = []
 
-async function RetrieveSearchInformation(SearchTerm: String): Promise<IProductModel[]> {
+export async function SearchProduct(SearchTerm: String): Promise<IProductModel[]> {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto(url + SearchTerm);
@@ -38,7 +38,7 @@ function ReadData(html: any) {
     }
     return productList;
 };
-let result = RetrieveSearchInformation("brood");
+let result = SearchProduct("brood");
 result.then(function (result) {
     console.log(result);
 })
