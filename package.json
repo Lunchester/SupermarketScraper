@@ -1,6 +1,6 @@
 {
   "name": "supermarketscraper",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "It's a supermarket web scraper",
   "main": "./lib/index.js",
   "scripts": {
