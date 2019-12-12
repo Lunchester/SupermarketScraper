@@ -2,7 +2,7 @@
   "name": "supermarketscraper",
   "version": "1.0.13",
   "description": "It's a supermarket web scraper",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "start": "npm run build:live",
     "build": "tsc -p .",
