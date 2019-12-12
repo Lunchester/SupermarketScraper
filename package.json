@@ -32,6 +32,7 @@
   "typings": "./typings-custom/index.d.ts",
   "files": [
     "lib",
-    "typings-custom"
+    "typings-custom",
+    "src"
   ]
 }
