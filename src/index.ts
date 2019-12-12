@@ -1,8 +1,8 @@
-const puppeteer = require('puppeteer');
+import puppeteer from 'puppeteer';
 const url = 'https://www.plus.nl/zoekresultaten?SearchTerm=';
 const imageUrlFormatBegin = 'https://www.plus.nl/INTERSHOP/static/WFS/PLUS-Site/-/PLUS/nl_NL/product/M/';
 const imageUrlFormatEnd = '.png';
-const $ = require('cheerio');
+import $ from 'cheerio';
 import { IProductModel } from "./models/product-model";
 
 export class SupermarketScraper {
@@ -25,11 +25,11 @@ export class SupermarketScraper {
     ReadData(html: any) {
         var descriptions: string[] = [];
         var images: string[] = [];
-        $('a.product-tile > div.product-tile__info > p.product-tile__description', html).each(function (i: number, elem: string) {
+        $('a.product-tile > div.product-tile__info > p.product-tile__description', html).each((i, elem) => {
             //Displays the product info
             descriptions[i] = $(elem).text();
         });
-        $('div.prod-tile', html).each(function (i: number, elem: string) {
+        $('div.prod-tile', html).each((i, elem) => {
             //Displays the product data
             images[i] = imageUrlFormatBegin + $(elem).attr('data-id') + imageUrlFormatEnd;
         });

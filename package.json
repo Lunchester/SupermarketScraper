@@ -12,6 +12,8 @@
   "author": "Tobin Stultiens",
   "license": "ISC",
   "dependencies": {
+    "@types/cheerio": "^0.22.15",
+    "@types/puppeteer": "^2.0.0",
     "cheerio": "^1.0.0-rc.3",
     "nodemon": "^1.19.4",
     "puppeteer": "^2.0.0",
@@ -27,5 +29,5 @@
     "eslint": "^6.5.1",
     "eslint-config-google": "^0.14.0"
   },
-  "typings": "./typings-custom/SupermarketScraper.d.ts"
+  "typings": "./typings-custom/index.d.ts"
 }
