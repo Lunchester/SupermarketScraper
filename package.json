@@ -26,5 +26,6 @@
     "@typescript-eslint/parser": "^2.5.0",
     "eslint": "^6.5.1",
     "eslint-config-google": "^0.14.0"
-  }
+  },
+  "typings": "./typings-custom/SupermarketScraper.d.ts"
 }
