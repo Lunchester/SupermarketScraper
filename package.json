@@ -29,5 +29,8 @@
     "eslint": "^6.5.1",
     "eslint-config-google": "^0.14.0"
   },
-  "typings": "./typings-custom/index.d.ts"
+  "typings": "./typings-custom/index.d.ts",
+  "files": [
+    "lib"
+  ]
 }
