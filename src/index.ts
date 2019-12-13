@@ -43,8 +43,3 @@ export class SupermarketScraper {
         return this.productList;
     };
 }
-var test = new SupermarketScraper();
-let result = test.SearchProduct("brood");
-result.then(function (result) {
-    console.log(result);
-})
